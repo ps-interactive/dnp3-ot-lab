@@ -6,5 +6,5 @@ from master import MyMaster, MyLogger, AppChannelListener, SOEHandler, MasterApp
 app = MyMaster(log_handler=MyLogger(), listener=AppChannelListener(), soe_handler=SOEHandler(), master_application=MasterApplication())
 
 while True:
-    app.master.ScanRange(opendnp3.GroupVariationID(10, 2), 0, 4, opendnp3.TaskConfig().Default())
+    app.master.ScanRange(opendnp3.GroupVariationID(10, 2), 0, 24, opendnp3.TaskConfig().Default())
     sleep(1)
