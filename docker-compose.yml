@@ -6,10 +6,22 @@ services:
         ports: 
             - "8000:8000"
             - "502:502"
+            - "20000:20000"
+            - "48818:48818"
         networks:
           vpcbr:
             ipv4_address: 172.18.0.2
         expose: ["8000", "502"]
+
+        scadabr:
+          container_name: ScadaBR
+          image: bitelxux/scadabr
+          ports:
+              - "8080:8080"
+          networks:
+            vpcbr:
+              ipv4_address: 172.18.0.3
+          expose: ["8080"]
 
 networks:
   vpcbr:
