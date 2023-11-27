@@ -15,6 +15,7 @@ services:
 
        scadabr:
         container_name: ScadaBR
+        privileged: true
         image: bitelxux/scadabr
         ports:
              - "8080:8080"
