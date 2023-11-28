@@ -45,7 +45,7 @@ class MasterCmd(cmd.Cmd):
         print('\thelp\t\tDisplay command-line help.')
         print('\tem_on\t\tActivate Emergency mode.')
         print('\tem_off\t\tDeactivate Emergency Mode.')
-        print('\tpb\t\tSimulate a pedestrian pushbutton press.')
+        print('\tped_pb\t\tSimulate a pedestrian pushbutton press.')
         print('\tstatus\t\tRead the status of all points')
         print('\twrite_time\tWrite a TimeAndInterval to the outstation.')
         print('\tquit')
@@ -61,7 +61,7 @@ class MasterCmd(cmd.Cmd):
                                                      3,
                                                      command_callback)
         
-    def do_pb(self, line):
+    def do_ped_pb(self, line):
         """Send a DirectOperate BinaryOutput (group 12) index 3 LATCH_ON to the Outstation, then sleep for 7 seconds 
         and finally send a DirectOperate BinaryOutput (group 12) index 3 LATCH_OFF to the Outstation """
         self.application.send_direct_operate_command(opendnp3.ControlRelayOutputBlock(opendnp3.ControlCode.LATCH_ON),
