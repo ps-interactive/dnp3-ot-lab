@@ -3,6 +3,8 @@ PROGRAM TrafficLight
     Redlight AT %QX0.0 : BOOL;
     Orangelight AT %QX0.1 : BOOL;
     Greenlight AT %QX0.2 : BOOL;
+    Emergency_mode AT %QX0.3 : BOOL;
+    Pedestrian_PB AT %QX0.4 : BOOL;
   END_VAR
   VAR
     TON0 : TON;
@@ -11,10 +13,6 @@ PROGRAM TrafficLight
     Step_2 : BOOL;
     TON1 : TON;
     TON2 : TON;
-  END_VAR
-  VAR
-    Pedestrian_PB AT %QX0.4 : BOOL;
-    Emergency_mode AT %QX0.3 : BOOL;
   END_VAR
   VAR
     R_TRIG0 : R_TRIG;
