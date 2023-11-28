@@ -46,7 +46,8 @@ class MasterCmd(cmd.Cmd):
         print('\tem_on\t\tActivate Emergency mode.')
         print('\tem_off\t\tDeactivate Emergency Mode.')
         print('\tped_pb\t\tSimulate a pedestrian pushbutton press.')
-        print('\tstatus\t\tRead the status of all points')
+        print('\tstatus\t\tRead the status of selected points')
+        print('\tscan_all\tRead data from all of the outstation objects.')
         print('\twrite_time\tWrite a TimeAndInterval to the outstation.')
         print('\tquit')
    
@@ -62,12 +63,12 @@ class MasterCmd(cmd.Cmd):
                                                      command_callback)
         
     def do_ped_pb(self, line):
-        """Send a DirectOperate BinaryOutput (group 12) index 3 LATCH_ON to the Outstation, then sleep for 7 seconds 
-        and finally send a DirectOperate BinaryOutput (group 12) index 3 LATCH_OFF to the Outstation """
+        """Send a DirectOperate BinaryOutput (group 12) index 4 LATCH_ON to the Outstation, then sleep for 6 seconds 
+        and finally send a DirectOperate BinaryOutput (group 12) index 4 LATCH_OFF to the Outstation """
         self.application.send_direct_operate_command(opendnp3.ControlRelayOutputBlock(opendnp3.ControlCode.LATCH_ON),
                                                      4,
                                                      command_callback)
-        sleep(7)
+        sleep(6)
         self.application.send_direct_operate_command(opendnp3.ControlRelayOutputBlock(opendnp3.ControlCode.LATCH_OFF),
                                                      4,
                                                      command_callback)
@@ -75,7 +76,11 @@ class MasterCmd(cmd.Cmd):
     def do_status(self, line):
         """Do an ad-hoc scan of all points (group 10, variation 2, indexes 0-4). """
         self.application.master.ScanRange(opendnp3.GroupVariationID(10, 2), 0, 4, opendnp3.TaskConfig().Default())
-
+        
+    def do_scan_all(self, line):
+        """Call ScanAllObjects (group 2, variation 1). """
+        self.application.master.ScanAllObjects(opendnp3.GroupVariationID(2, 1), opendnp3.TaskConfig().Default())
+        
     def do_write_time(self, line):
         """Write a TimeAndInterval to the Outstation. Command syntax is: write_time"""
         millis_since_epoch = int((datetime.now() - datetime.utcfromtimestamp(0)).total_seconds() * 1000.0)
