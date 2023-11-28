@@ -13,16 +13,6 @@ services:
             ipv4_address: 172.18.0.2
         expose: ["8000", "502"]
 
-       scadabr:
-        container_name: ScadaBR
-        privileged: true
-        image: bitelxux/scadabr
-        ports:
-             - "8080:8080"
-        networks:
-          vpcbr:
-            ipv4_address: 172.18.0.3
-        expose: ["8080"]
 
 networks:
   vpcbr:
