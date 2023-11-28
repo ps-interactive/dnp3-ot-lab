@@ -1,8 +1,8 @@
 PROGRAM TrafficLight
   VAR
-    Redlight AT %QX0.0 : BOOL;
-    Orangelight AT %QX0.1 : BOOL;
-    Greenlight AT %QX0.2 : BOOL;
+    Red_light AT %QX0.0 : BOOL;
+    Amber_light AT %QX0.1 : BOOL;
+    Green_light AT %QX0.2 : BOOL;
     Emergency_mode AT %QX0.3 : BOOL;
     Pedestrian_PB AT %QX0.4 : BOOL;
   END_VAR
@@ -24,7 +24,7 @@ PROGRAM TrafficLight
   END_VAR
 
   INITIAL_STEP Step0:
-    Redlight(N);
+    Red_light(N);
     Step_0(N);
     COMPUTE_FUNCTION_BLOCKS(S);
   END_STEP
@@ -46,7 +46,7 @@ PROGRAM TrafficLight
   END_TRANSITION
 
   STEP Step1:
-    Greenlight(N);
+    Green_light(N);
     Step_1(N);
   END_STEP
 
@@ -55,7 +55,7 @@ PROGRAM TrafficLight
   END_TRANSITION
 
   STEP Step2:
-    Orangelight(N);
+    Amber_light(N);
     Step_2(N);
   END_STEP
 
