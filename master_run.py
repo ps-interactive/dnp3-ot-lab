@@ -49,7 +49,7 @@ class MasterCmd(cmd.Cmd):
         print('\tstatus\t\tRead the status of selected points')
         print('\twrite_time\tWrite a TimeAndInterval to the outstation.')
         print('\tquit')
-   
+
     def do_em_on(self, line):
         """Send a DirectOperate BinaryOutput (group 12) index 3 LATCH_ON to the Outstation."""
         self.application.send_direct_operate_command(opendnp3.ControlRelayOutputBlock(opendnp3.ControlCode.LATCH_ON),
@@ -60,7 +60,7 @@ class MasterCmd(cmd.Cmd):
         self.application.send_direct_operate_command(opendnp3.ControlRelayOutputBlock(opendnp3.ControlCode.LATCH_OFF),
                                                      3,
                                                      command_callback)
-        
+
     def do_ped_pb(self, line):
         """Send a DirectOperate BinaryOutput (group 12) index 4 LATCH_ON to the Outstation, then sleep for 6 seconds 
         and finally send a DirectOperate BinaryOutput (group 12) index 4 LATCH_OFF to the Outstation """
